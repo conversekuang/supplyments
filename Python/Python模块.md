@@ -33,11 +33,22 @@
 
 
 
-
-
 - exe转换成py
 
   https://mp.weixin.qq.com/s/9508u1IKCW541lyzwkzF_Q
 
 
 
+- itertools.tee	—	一个生成器如何当两个用
+
+  将一个生成器分成好几份，能够多次复用。
+
+  https://www.kingname.info/2019/11/05/one-generator-to-two/
+
+
+
+- log日志模块：
+
+  logging 和loguru 
+
+  

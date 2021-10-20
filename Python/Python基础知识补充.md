@@ -75,10 +75,6 @@
 
 
 
-
-
-
-
 - import 和from import的区别
 
   - 你只能导入一个模块或者导入一个函数或者类，你不能导入一个文件夹。
@@ -109,4 +105,33 @@ https://www.kingname.info/2020/03/23/init-in-python/
 
 
 
-- Python函数重载
+- Python函数重载	
+
+  通过 `functools`模块里面的`singledispatch`装饰器实现函数重载。
+  
+  https://www.kingname.info/2019/12/11/singledispatch/
+
+
+
+- dict 字典 实现 `__missing__()` 魔术方法，能够实现当Key不存在时候不报错，返回一个值。
+
+  源码中并有该magic method
+
+  d[‘a’] 存在，那么只调用 __getitem__ 就结束了，
+  d[‘b’] 不存在，那么__getitem__会失败，之后就会尝试调用 __missing__ 方法。
+
+  https://www.kingname.info/2019/11/30/quite-dict/
+
+
+
+- 生成器
+
+  生成器的新用法。
+
+  ​	拆成多个模块，返回的是一个生成器，每次生成一个数据就会进行流水线处理。避免每次建立列表而集体返回。【之前都是直接for来读取生成器，没有返回并重新作为参数返回。值得学习该风格。】
+
+  https://www.kingname.info/2019/10/30/you-should-learn-yield/
+
+
+
+- 
