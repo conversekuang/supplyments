@@ -28,18 +28,6 @@
 
   https://mp.weixin.qq.com/s/3ftY3Y9ngcAoWHMrKdqZdA
 
-
-
-
-
-- Python 提醒  不能覆盖 某个父类方法
-
-  Python3.8 原生就能做到final关键字。**无法禁止，但是可以提醒覆盖**。
-
-  https://mp.weixin.qq.com/s/AlcOv2tmrwWhW58F36YYPA	
-
-  
-
 ​		
 
 - 在Python中使用类型标注
@@ -134,4 +122,83 @@ https://www.kingname.info/2020/03/23/init-in-python/
 
 
 
-- 
+- Python 提醒  不能覆盖 某个父类方法
+
+  Python3.8 原生就能做到final关键字。**无法禁止，但是可以提醒覆盖**。
+
+  https://mp.weixin.qq.com/s/AlcOv2tmrwWhW58F36YYPA	
+
+
+
+- Python 程序报错来禁止父类方法的覆盖。
+
+  通过metaclass来实现。禁止子类的重写。
+
+  https://mp.weixin.qq.com/s/PV7pjq5fXQbNDC1RPChM_Q
+
+
+
+
+
+- **metaclass 原类**  
+
+  https://zhuanlan.zhihu.com/p/98440398
+
+  - 所有的 Python 的用户定义类，都是 type 这个类的实例
+
+  - 用户自定义类，只不过是 type 类的 `__call__` 运算符重载
+
+  - metaclass 是 type 的子类，通过替换 type 的 `__call__` 运算符重载机制，“超越变形”正常的类。
+
+    *是new还是call？*
+
+  ```
+  查看源码，type也继承自object
+  
+  >>> type(object)
+  <class 'type'>
+  
+  type为对象的顶点，所有对象都创建自type。
+  object为类继承的顶点，所有类都继承自object。
+  
+  
+  object是所有类的超类，而且type也是继承自object；所有对象创建自type，而且object也是type的实例。
+  “type是object的类型，同时，object又是type的超类”，那到底是先有object还是先有type呢？这就像“先有鸡还是先有蛋问题”。
+  object和type是python中的两个源对象，事实上，它们是互相依赖对方来定义，所以它们不能分开而论。
+  通过这两个源对象可以繁育出一堆对象：list、tuple、dict等。元类就是这些类的类，这些类是元类的实例。
+  ```
+
+
+
+- `__str__`和`__repr__`
+
+  print输出的是`__str__`，而debug模式下输出的是字符串原始的模样，也就是`__repr__`。
+
+  如果所见即所得的话字符串用r''的方式。
+
+  ```python
+  >>> b = 'D:\game\pal4' 
+  >>> b 
+  'D:\\game\\pal4' 
+  
+  >>> print(repr(b)) 
+  'D:\\game\\pal4' 
+  
+  >>> print(b) 
+  D:\game\pal4 
+  实际上，输入变量名，回车以后，你看到的才是这个字符串真正的样子，因为在Python里面是不存在单根反斜杠的。当你要表示反斜杠本身的时候，就应该是\\这种写法。
+  
+  当然在定义的时候你可以只写单根反斜杠，在大多数情况下，Python会理解你的意图，所以它会自动把单根反斜杠转换为两个反斜杠。
+  
+  而使用print关键字打印出来的，是经过Python优化，更便于人类阅读的样子
+  ```
+
+  
+
+- for 用法。
+
+  - 必须是iterable的对象。
+
+  - for...else的用法
+
+  https://mp.weixin.qq.com/s/Uo5nreXv77TXsSB5hBTzEQ

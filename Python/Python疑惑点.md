@@ -83,4 +83,24 @@ CLanguage.info(A("x",50),"a")
 
 
 
-4. 
+4. `__call__`和`__new__`不是同时生效的。
+
+   ```python
+   class A(object):
+       def __init__(self, name):
+           print("__init__", name)
+   
+       def __call__(self,name):
+           print("__call__", name)
+   
+   if __name__ == '__main__':
+       a = A("kzk")
+       A("s")
+       a("w")
+   ####################
+   __init__ kzk
+   __init__ s
+   __call__ w
+   ```
+
+   
