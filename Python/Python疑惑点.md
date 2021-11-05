@@ -48,9 +48,9 @@
 
 2. function和method什么区别？
 
-   function是直接定义的函数，就是函数。
+   **function是直接定义的函数**，就是函数。
 
-   method是在类中定义的，不论是staticmethod，classmethod还是对象的普通函数，都是方法。
+   **method是在类中定义的**，不论是staticmethod，classmethod还是对象的普通函数，都是方法。
 
    Pycharm中会提示是f还是m。
 

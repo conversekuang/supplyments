@@ -8,7 +8,13 @@
 
 
 
-- 
+#### Dockerfile
+
+
+
+
+
+
 
 
 
@@ -63,3 +69,14 @@
 
 - docker启动：| standard_init_linux.go:211: exec user process caused "permission denied"
   - 直接将源文件chmod 755 然后重新build
+
+
+
+​	[Dockerfile的入坑路](https://blog.csdn.net/qq_39629343/article/details/81561715)
+
+​	[解决Rust -- update crates.io过慢的问题](https://learnku.com/articles/49977) ，是config
+
+​	[Dockerfile 构建镜像发布web](https://www.cnblogs.com/xiaochangwei/p/8204992.html)
+
+​	
+

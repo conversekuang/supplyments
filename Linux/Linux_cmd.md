@@ -20,17 +20,19 @@ awk -F:   修改分隔符，默认是空格。可以修改成其他。
 
 
 
-
-
 > 批量修改linux后缀名
+
+例如把 .plk 修改为 .pickle
 
 ll | awk '{split($9,a,".");print a[1]}' |xargs -i mv {}.pkl {}.pickle
 
 
 
-
-
 > 脚本输入服务器密码传输
+>
+> sshpass 无需输入再在命令行中输入密码，也不需要配sshkey。
+
+
 
 启动tcpdump
 
