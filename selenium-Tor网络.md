@@ -89,6 +89,8 @@ selenium4.0.0 + python3.8 + firefox 93.0 + geckodriver-v0.30.0
 
 
 
+**Linux selenium访问tor的**
+
 ```python
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.common.by import By
@@ -133,9 +135,118 @@ driver.quit()
 
 
 
+利用代码设置全局代理，自动上传文件。可行。但是由于文件服务器在国内，连接失败会超过max retries。
+
+**Linux selenium访问tor的，用minio上传文件**
+
+```Python
+from minio import Minio
+import urllib3
+
+import socket
+import socks
+import os
+
+
+if __name__ == '__main__':
+    socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 9150)
+    socket.socket = socks.socksocket
+
+    filename = "1023.pdf"
+    upload_file_path = "/home/dev/Desktop/upload_samples/" + filename
+
+    # 开启tcpdump
+    val = os.system('./mnt/hgfs/sharingVM/test_upload_by_tor/start_tcpdump_cmd.sh')
+
+    # Minio只能用于HTTP代理，不能socks5代理
+    minioClient = Minio(
+        endpoint='49.4.114.46:9000',  # 文件服务地址
+        access_key='minioadmin',  # 用户名
+        secret_key='minioadmin',  # 密钥
+        secure=False  # 设为True代表启用HTTPS
+    )
+
+    bucketname = "mybucket"
+    buckets = minioClient.list_buckets()
+    for bucket in buckets:
+        print(bucket.name, bucket.creation_date)
+
+    minioClient.fput_object(bucketname, "morning.pdf", "C1.pdf")
+
+    # 关闭tcpdump
+    val = os.system('./mnt/hgfs/sharingVM/test_upload_by_tor/stop_tcpdump_cmd.sh')
+```
+
+
+
+Selenium 官方文档，中下载可以使用库。不是核心所以不支持。直接提取到url用其他的HTTP库就可下载。
+
+
+
+通过selenium自动上传文件用到的方法。【sendkeys()】
+
+https://www.softwaretestinghelp.com/file-upload-in-selenium/
+
+
+
+**Windows selenium访问tor的，模拟网页上传文件**
+
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+@author: converse
+@version: 1.0.0
+@file: upload_file.py
+@time: 2021/11/19 9:20
+
+windows 版本 geckodriver
+"""
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.common.by import By
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.proxy import Proxy, ProxyType
+import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+
+DRIVERPATH = r'D:\geckodriver\geckodriver.exe'
+USERNAME = "minioadmin"
+PASSWORD = "minioadmin"
+
+options = FirefoxOptions()
+# options.add_argument("--headless") # 不打开浏览器
+
+s = Service(DRIVERPATH)
+
+driver = webdriver.Firefox(service=s)
+driver.get("http://119.3.13.158:8000/login")
+
+element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//h1[@class='MuiTypography-root jss11 MuiTypography-h6']")))
+print(element.text)
+
+driver.find_element(By.XPATH, "//input[@id='accessKey']").send_keys(USERNAME)
+driver.find_element(By.XPATH, "//input[@id='secretKey']").send_keys(PASSWORD)
+driver.find_element(By.XPATH, "//button").send_keys(Keys.ENTER)
+# 登录完毕
+element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//h4")))
+print(element.text)
+
+driver.get("http://119.3.13.158:8000/buckets/mybucket/browse")
+upload_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//input[@type="file"]')))
+
+upload_element.send_keys(r"E:\Examination\Raptor_Tor_upload_concentrate\readme.md")
+
+
+if __name__ == '__main__':
+    pass
+```
 
 
 
 
 
-
+> 当支持多文件上传的时候，可以通过 "\n"将文件路径连在一起。就可以实现多文件上传
