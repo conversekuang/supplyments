@@ -250,3 +250,13 @@ if __name__ == '__main__':
 
 
 > 当支持多文件上传的时候，可以通过 "\n"将文件路径连在一起。就可以实现多文件上传
+
+
+
+
+
+
+
+其他4种方法：
+
+​	https://blog.csdn.net/huilan_same/article/details/52439546

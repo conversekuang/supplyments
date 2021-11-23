@@ -26,9 +26,7 @@ from https://xvideos.blog.csdn.net/article/details/52367128
 
 
 
-```
-https://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@github.com/conversekuang/supplyments.git
+用这个git clone git@github.com:lujinjianst/myNCCL
 
-
-```
+push太好用了，不用
 
