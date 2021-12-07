@@ -85,8 +85,6 @@ assert linear_layer.weights == [linear_layer.w, linear_layer.b]
 
 
 
-
-
 添加权重的而另一种方式。
 
 ```python
@@ -118,8 +116,6 @@ linear_layer = Linear(4) # 输出的是4
 # 应该会自动调用build，这是在
 y = linear_layer(tf.ones((2, 2)))  # 输入的是2，因为build函数取的是input[-1]
 ```
-
-
 
 
 
@@ -160,7 +156,7 @@ for step, (x, y) in enumerate(dataset):
     # Update the weights of our linear layer.
     optimizer.apply_gradients(zip(gradients, linear_layer.trainable_weights)) # 更新梯度
 
-    # Logging.
+    # Logging
     if step % 100 == 0:
         print("Step:", step, "Loss:", float(loss))
 ```
@@ -337,7 +333,6 @@ for step, (x, y) in enumerate(dataset):
         # Forward pass.
         logits = mlp(x)
         
-        
 		# 预测值与真实值的损失
         # External loss value for this batch.
         loss = loss_fn(y, logits)
@@ -357,15 +352,11 @@ for step, (x, y) in enumerate(dataset):
         print("Step:", step, "Loss:", float(loss))
 ```
 
-
-
 可以选择记录训练过程中的多种指标，acc，loss等
 
 
 
 Compiled functions  编译函数。编译会将计算到静态图上，运算加快。通过装饰器@tf.function修饰即可。
-
-
 
 ```python
 # Prepare our layer, loss, and optimizer.
@@ -407,10 +398,6 @@ for step, (x, y) in enumerate(dataset):
     if step % 100 == 0:
         print("Step:", step, "Loss:", float(loss))			
 ```
-
-
-
-
 
 ---
 

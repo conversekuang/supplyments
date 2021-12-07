@@ -135,6 +135,14 @@ driver.quit()
 
 
 
+设置socks代理
+
+解决办法：要使用代理，需要用到socks这两个包。socks在python3中不是自带的，所以需要通过pip install PySocks这个模块
+
+https://www.cnblogs.com/woaixuexi9999/p/9360581.html
+
+
+
 利用代码设置全局代理，自动上传文件。可行。但是由于文件服务器在国内，连接失败会超过max retries。
 
 **Linux selenium访问tor的，用minio上传文件**
