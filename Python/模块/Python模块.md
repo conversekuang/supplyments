@@ -51,4 +51,17 @@
 
   logging 和loguru 
 
-  
+
+
+- python 提取文件
+
+  https://mp.weixin.qq.com/s/K5FkN5er5T6mXZE-9Q4qFQ
+
+  - pdf 表格转换可编辑文档：**Camelot** 
+  - 图片表格转换可编辑文档：腾讯云OCR
+  - 
+
+
+
+
+
