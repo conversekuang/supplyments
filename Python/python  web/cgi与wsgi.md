@@ -18,10 +18,6 @@ https://www.jianshu.com/p/c4dc22699a42
 
 
 
-`WSGI`（**Web服务器网关接口**）是基于`HTTP`协议模式的，不支持`WebSocket`，而`ASGI`的诞生则是为了解决`Python`常用的`WSGI`不支持当前`Web`开发中的一些新的协议标准。同时，`ASGI`对于`WSGI`原有的模式的支持和`WebSocket`的扩展，**即`ASGI`是`WSGI`的扩展**。
-
-
-
 **WSGI**:通信协议。是一种描述web服务器（如nginx，uWSGI等服务器）如何与web应用程序（如用Django、Flask框架写的程序）
 
 
@@ -52,6 +48,10 @@ asgi:  Uvicorn，Daphne 或 Hypercorn
 
 
 ---
+
+`WSGI`（**Web服务器网关接口**）是基于`HTTP`协议模式的，不支持`WebSocket`，而`ASGI`的诞生则是为了解决`Python`常用的`WSGI`不支持当前`Web`开发中的一些新的协议标准。同时，`ASGI`对于`WSGI`原有的模式的支持和`WebSocket`的扩展，**即`ASGI`是`WSGI`的扩展**。
+
+
 
 ASGI（**异步**服务器网关接口）是WSGI的精神继承者，旨在在具有异步功能的Python Web服务器，框架和应用程序之间提供标准接口。
 
